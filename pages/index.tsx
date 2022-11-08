@@ -20,7 +20,13 @@ const Home: NextPage = () => {
 
       connection.getAccountInfo(key).then(res => {
 
-        setExecutable(res?.executable ?? false)
+        if (res?.executable == true) {
+          setExecutable('Yup')
+        } else {
+          setExecutable('Nope')
+        }
+
+        // setExecutable(res?.executable ?? false)
       })
     } catch (error) {
       setAddress('')
@@ -38,7 +44,7 @@ const Home: NextPage = () => {
         <AddressForm handler={addressSubmittedHandler} />
         <p>{`Address: ${address}`}</p>
         <p>{`Balance: ${balance} SOL`}</p>
-        <p>{`It is executable?: ${executable ? 'Yep':'Nope'}`}</p>
+        <p>{`It is executable?: ${executable}`}</p>
       </header>
     </div>
   )
